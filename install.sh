@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — copy the coala-kit skills into an agent's skills directory.
+# install.sh — copy the coala skills into an agent's skills directory.
 #
 # Usage:
 #   ./install.sh                          # installs to ~/.claude/skills
@@ -25,7 +25,7 @@ SKILLS_DIR="${TARGET:-${SKILLS_DIR:-$HOME/.claude/skills}}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SRC="$SCRIPT_DIR/skills"
 
-echo "Installing coala-kit skills into: $SKILLS_DIR"
+echo "Installing coala skills into: $SKILLS_DIR"
 mkdir -p "$SKILLS_DIR"
 
 for skill in memory decision-ledger episodic-memory decision-loop; do

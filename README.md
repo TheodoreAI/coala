@@ -1,4 +1,4 @@
-# coala-kit
+# coala
 
 Memory and deliberation scaffolding for coding agents, based on the cognitive
 architecture in [CoALA](https://arxiv.org/abs/2309.02427) (Sumers et al.,
@@ -34,8 +34,8 @@ decision task) — the model just never called them. The full loop cut that to
 ## Install
 
 ```bash
-git clone <this-repo> coala-kit
-cd coala-kit
+git clone <this-repo> coala
+cd coala
 ./install.sh                          # -> ~/.claude/skills
 ./install.sh ~/.config/opencode/skills # or wherever your agent looks for skills
 ```
