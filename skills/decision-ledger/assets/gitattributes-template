@@ -1,0 +1,6 @@
+# Force LF regardless of OS, so cloning/checking out this ledger on
+# Windows vs. macOS/Linux doesn't rewrite every file's line endings and
+# create noisy diffs that bury real decision changes.
+* text=auto eol=lf
+*.yaml text eol=lf
+*.history text eol=lf
