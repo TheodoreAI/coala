@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 *.bak
 results*.json
+summary_*.txt
+run_all_local.log
