@@ -28,7 +28,7 @@ SRC="$SCRIPT_DIR/skills"
 echo "Installing coala skills into: $SKILLS_DIR"
 mkdir -p "$SKILLS_DIR"
 
-for skill in memory decision-ledger episodic-memory decision-loop; do
+for skill in memory context-ledger episodic-memory decision-loop; do
   dest="$SKILLS_DIR/$skill"
   if [ -d "$dest" ] && [ "$FORCE" -ne 1 ]; then
     echo "  SKIP   $skill (already exists at $dest — pass --force to overwrite)"
@@ -50,7 +50,7 @@ agent config for you):
    ## Persistent memory
        python3 <skills-dir>/memory/scripts/memory.py <command>
    ## Decisions
-       python3 <skills-dir>/decision-ledger/scripts/decisions.py <command>
+       python3 <skills-dir>/context-ledger/scripts/decisions.py <command>
    ## Decision loop
        See the decision-loop skill for the propose/evaluate/select discipline.
    ## Episodic memory
@@ -59,8 +59,8 @@ agent config for you):
    Each skill's SKILL.md has the full guidance and exact commands — the
    snippet above is just enough for your agent to know the tools exist.
 
-2. If you want the global decision ledger synced across machines, run once:
-     python3 skills/decision-ledger/scripts/init_global_repo.sh
+2. If you want the global context ledger synced across machines, run once:
+     python3 skills/context-ledger/scripts/init_global_repo.sh
    and follow the printed steps to add a remote.
 
 See README.md for the design rationale and benchmark/RESULTS.md for evidence

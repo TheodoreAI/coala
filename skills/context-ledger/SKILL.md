@@ -1,9 +1,20 @@
 ---
-name: decision-ledger
+name: context-ledger
 description: "Track technical decisions made while coding in a keyed ledger so Claude never silently re-decides or contradicts something it already decided earlier, including in past sessions and across different projects. Covers two tiers: LOCAL decisions specific to one codebase (architecture choices, library picks, data formats, retry/auth/config strategies for this project) and GLOBAL decisions that should hold across all the user's projects (default tooling, commit conventions, personal coding preferences), kept in sync across machines via its own git repo. Use this proactively, without being asked, whenever making or revisiting a notable design decision during coding work — check the ledger before deciding, log the decision after deciding. Also use when the user asks what did we decide about X, why did we do it this way, or wants a log or history of project or personal decisions."
 ---
 
-# Decision Ledger
+# Context Ledger
+
+> **Naming note: "context" here means McCarthy's contexts, not an LLM's context window.**
+> The name comes from John McCarthy's formalization of context ("Notes on Formalizing
+> Context", 1993), where `ist(c, p)` asserts that proposition `p` is true in context `c`.
+> It has nothing to do with context length or the token window of a language model.
+> Each entry is one such assertion: the tier plus `scope` identify the context `c`, and
+> `aspect = value` is the proposition `p`. Local and global are nested contexts. A local
+> entry overrides a global one at the same key, and a global entry lifts into any
+> project that hasn't decided otherwise. The script (`decisions.py`), the global repo
+> (`global-decisions/`), and the `DECISION_LEDGER_GLOBAL` env var keep their old names so
+> existing ledgers keep working.
 
 A ledger that lets Claude check "have I already decided this?" and "did I just contradict myself?" without ever needing to judge whether two decisions are semantically "the same" — that question (proposition identity) is open in general, going back to Frege. This works by never trying to solve it: a decision is identified by an exact `(scope, aspect)` key that whoever logs it chooses. Two decisions only ever get compared if they share a key.
 

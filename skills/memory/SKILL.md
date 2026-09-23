@@ -1,6 +1,6 @@
 ---
 name: memory
-description: "Persistent cross-session memory about the user, their machines, and their ongoing projects. Read it to recall facts established in earlier sessions (how to reach a host, where a runtime lives, what a project is for, how the user wants you to work); write to it when something durable and non-obvious is learned that would be costly to rediscover. Use when the user says remember this, when you learn a fact that will still matter next week, or when a task touches infrastructure or a project you may have notes on already. Not for decisions -- those go in the decision-ledger skill."
+description: "Persistent cross-session memory about the user, their machines, and their ongoing projects. Read it to recall facts established in earlier sessions (how to reach a host, where a runtime lives, what a project is for, how the user wants you to work); write to it when something durable and non-obvious is learned that would be costly to rediscover. Use when the user says remember this, when you learn a fact that will still matter next week, or when a task touches infrastructure or a project you may have notes on already. Not for decisions -- those go in the context-ledger skill."
 ---
 
 # Memory
@@ -71,7 +71,7 @@ Do **not** write down:
 - anything the repository already records — code structure, git history, a fix
   you just made, contents of a `CLAUDE.md` or `AGENTS.md`;
 - things that only matter inside the current conversation;
-- technical decisions. Those belong in the `decision-ledger` skill, which keys
+- technical decisions. Those belong in the `context-ledger` skill, which keys
   them by `(scope, aspect)` so a later session can detect that it is about to
   contradict one. Memory has no such conflict detection — it is for facts, not
   choices.

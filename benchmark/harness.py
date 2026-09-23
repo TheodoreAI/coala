@@ -5,7 +5,7 @@ OpenAI-tool-calling-compatible chat endpoint (vLLM serving Gemma 4).
 baseline: plain agent instructions, only try_approach/submit_answer tools.
 coala:    decision-loop instructions (check first / propose / evaluate /
           select) plus check_episodes and check_decision tools backed by the
-          REAL episodic-memory and decision-ledger scripts, pointed at a
+          REAL episodic-memory and context-ledger scripts, pointed at a
           sandboxed per-task store seeded with that task's seed data. This
           exercises the actual scripts, not a simulation of them.
 
@@ -30,7 +30,7 @@ from tasks import Task
 
 SKILLS_ROOT = Path(r"C:/Users/mateo/.claude/skills")
 EPISODES_PY = SKILLS_ROOT / "episodic-memory/scripts/episodes.py"
-DECISIONS_PY = SKILLS_ROOT / "decision-ledger/scripts/decisions.py"
+DECISIONS_PY = SKILLS_ROOT / "context-ledger/scripts/decisions.py"
 
 MAX_TURNS = 8
 

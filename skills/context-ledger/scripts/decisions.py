@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-decisions.py — a two-tier, git-native decision ledger for coding agents.
+decisions.py — a two-tier, git-native context ledger for coding agents.
 
 Identity is never inferred from meaning. A decision is identified by an
 exact (scope, aspect) key chosen by whoever logs it. Two decisions only
@@ -255,7 +255,7 @@ def warn_if_not_git_repo(root: Path, tier_name: str):
           file=sys.stderr)
     if tier_name == "global":
         print(f"  Run: git init {root.parent} && cd {root.parent} && "
-              f"git add -A && git commit -m 'init global decision ledger'",
+              f"git add -A && git commit -m 'init global context ledger'",
               file=sys.stderr)
         print("  Then add a remote (e.g. a private GitHub repo) and clone it "
               "on your other machine so both stay in sync.", file=sys.stderr)
@@ -472,7 +472,7 @@ def cmd_export(args):
     root = global_root() if args.global_ else local_root()
     rows = list(iter_decisions(root))
 
-    lines = [f"# Decision Ledger ({tier_name})", "", "Auto-generated — do not edit by hand.", ""]
+    lines = [f"# Context Ledger ({tier_name})", "", "Auto-generated — do not edit by hand.", ""]
     by_scope = {}
     for scope, aspect, data in rows:
         by_scope.setdefault(scope, []).append((aspect, data))
@@ -493,7 +493,7 @@ def cmd_export(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Two-tier keyed decision ledger for coding agents.")
+    parser = argparse.ArgumentParser(description="Two-tier keyed context ledger for coding agents.")
     # add_subparsers(required=) is Python 3.7+; set the attribute instead so
     # this runs on 3.6 as well.
     sub = parser.add_subparsers(dest="command")

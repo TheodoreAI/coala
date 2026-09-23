@@ -1,6 +1,6 @@
 ---
 name: episodic-memory
-description: "Append-only log of attempts and their outcomes — 'on this date I tried X, here's what happened, here's the lesson.' Distinct from the memory skill (durable facts) and decision-ledger (keyed choices): this is a searchable trajectory history for nontrivial or multi-attempt tasks, especially ones that failed, partially worked, or took several tries. Use it to log a finished attempt at something nonobvious, and to check whether a similar attempt was already made before starting a recurring or tricky task. Not for facts (use memory) or for choices with one current value (use decision-ledger)."
+description: "Append-only log of attempts and their outcomes — 'on this date I tried X, here's what happened, here's the lesson.' Distinct from the memory skill (durable facts) and context-ledger (keyed choices): this is a searchable trajectory history for nontrivial or multi-attempt tasks, especially ones that failed, partially worked, or took several tries. Use it to log a finished attempt at something nonobvious, and to check whether a similar attempt was already made before starting a recurring or tricky task. Not for facts (use memory) or for choices with one current value (use context-ledger)."
 ---
 
 # Episodic Memory
@@ -13,7 +13,7 @@ belongs in this store.
 Three stores exist and they answer different questions:
 
 - **memory** (semantic) — "what is true?" One file per fact, current-truth only.
-- **decision-ledger** (procedural/keyed) — "what did we decide, and does this
+- **context-ledger** (procedural/keyed) — "what did we decide, and does this
   contradict it?" One active value per `(scope, aspect)` key, with history.
 - **episodic-memory** (this) — "have I tried this before, and what happened?"
   Many entries expected, purely additive, no "current value" — every attempt
@@ -60,7 +60,7 @@ python3 <skill_path>/scripts/episodes.py log <scope> "<one-line task>" \
 - `scope` — a short freeform tag for what area this belongs to (`cluster`,
   `clipboard-sync`, `opencode`, `photo-to-3d`). Reuse existing scopes where
   they fit — run `scopes` to see what's already in use — but unlike the
-  decision ledger's keys, there's no strict identity requirement here.
+  context ledger's keys, there's no strict identity requirement here.
 - `task` — one line, specific enough to recognize on a later `recent`/`search`
   scan.
 - `--detail` — what happened: the actions taken, the error seen, the sequence

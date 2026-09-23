@@ -11,13 +11,20 @@ dependencies beyond Python 3.6+.
 | Skill | Answers | Storage |
 |---|---|---|
 | `memory` | "What is true?" | One markdown file per fact + an index |
-| `decision-ledger` | "What did we decide, and does this contradict it?" | One current value per `(scope, aspect)` key, with full history |
+| `context-ledger` | "What did we decide, and does this contradict it?" | One current value per `(scope, aspect)` key, with full history |
 | `episodic-memory` | "Have I tried this before, and what happened?" | Append-only JSONL log, one record per attempt |
 | `decision-loop` | The moment before a decision: check first, propose 2-4 real candidates, evaluate against explicit criteria, select, execute | (Reasoning discipline — no storage of its own; writes to the two above) |
 
 These map onto CoALA's memory taxonomy (semantic / procedural / episodic) plus
 its propose-evaluate-select-execute decision cycle — see each skill's
 `SKILL.md` for the specific correspondence.
+
+`context-ledger` was previously named `decision-ledger`. "Context" refers to
+McCarthy's formalization of context, `ist(c, p)` (proposition `p` is true in
+context `c`), not an LLM's context length. The script (`decisions.py`) and the
+`DECISION_LEDGER_GLOBAL` env var keep their old names, so existing ledgers
+still work. If you installed the old name, delete `<skills-dir>/decision-ledger`
+after reinstalling so the agent doesn't see two copies.
 
 ## Why the decision-loop skill isn't optional dressing
 
@@ -56,8 +63,8 @@ your `CLAUDE.md`/`AGENTS.md`/equivalent.
   root). If you install them somewhere non-standard, adjust the relative
   paths in `skills/decision-loop/SKILL.md`.
 - Nothing here requires cloud services, a database, or network access. The
-  decision-ledger's *global* tier can optionally sync across machines via its
-  own git repo (`decision-ledger/scripts/init_global_repo.sh`) — that's the
+  context-ledger's *global* tier can optionally sync across machines via its
+  own git repo (`context-ledger/scripts/init_global_repo.sh`) — that's the
   only piece with a multi-machine story built in; the rest is local files.
 
 ## Benchmark harness

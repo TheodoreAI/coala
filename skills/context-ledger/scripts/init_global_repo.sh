@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# init_global_repo.sh — one-time setup for the global decision ledger's
+# init_global_repo.sh — one-time setup for the global context ledger's
 # own git repo. Safe to re-run: skips steps that are already done.
 #
 # Usage:
@@ -22,7 +22,7 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GITATTRS_SRC="$SCRIPT_DIR/../assets/gitattributes-template"
 
-echo "Setting up global decision ledger at: $ROOT"
+echo "Setting up global context ledger at: $ROOT"
 mkdir -p "$ROOT/decisions"
 cd "$ROOT"
 
@@ -66,7 +66,7 @@ git add -A
 if git diff --cached --quiet; then
   echo "Nothing new to commit."
 else
-  git commit -q -m "init global decision ledger"
+  git commit -q -m "init global context ledger"
   echo "Committed."
 fi
 

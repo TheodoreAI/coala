@@ -1,6 +1,6 @@
 ---
 name: decision-loop
-description: "Structured propose -> evaluate -> select -> execute deliberation for a notable, risky, or ambiguous decision -- one that could plausibly be revisited later, affects more than the current line/step, or has genuinely competing approaches worth comparing. Generates 2-4 real candidates, scores them against explicit criteria, picks one with a stated reason, then executes -- rather than committing to the first approach that comes to mind. Composes with decision-ledger (check for a prior answer first; log the pick if it's a reusable technical decision) and episodic-memory (log the outcome so a future search surfaces the comparison, not just the end fact). Not for routine work with one obvious approach -- that should skip this entirely."
+description: "Structured propose -> evaluate -> select -> execute deliberation for a notable, risky, or ambiguous decision -- one that could plausibly be revisited later, affects more than the current line/step, or has genuinely competing approaches worth comparing. Generates 2-4 real candidates, scores them against explicit criteria, picks one with a stated reason, then executes -- rather than committing to the first approach that comes to mind. Composes with context-ledger (check for a prior answer first; log the pick if it's a reusable technical decision) and episodic-memory (log the outcome so a future search surfaces the comparison, not just the end fact). Not for routine work with one obvious approach -- that should skip this entirely."
 ---
 
 # Decision Loop
@@ -25,7 +25,7 @@ numbers: `../../benchmark/RESULTS.md` in this repo.
 
 ## When to use this
 
-Same bar as the `decision-ledger` skill uses for logging a decision — reuse it
+Same bar as the `context-ledger` skill uses for logging a decision — reuse it
 exactly, so the two stay aligned:
 
 - could plausibly be revisited later (by you, in a future session, or by the user),
@@ -40,7 +40,7 @@ anything where naming alternatives would be theater rather than real comparison.
 ## The loop
 
 1. **Check first.** Before proposing anything, check whether this was already
-   decided: `python3 ../decision-ledger/scripts/decisions.py check <scope> <aspect>`
+   decided: `python3 ../context-ledger/scripts/decisions.py check <scope> <aspect>`
    (paths here assume the standard install layout — sibling skill directories
    under one skills root; adjust if yours differs). If found, follow it — this
    loop is for open questions, not re-litigating settled ones.
@@ -66,7 +66,7 @@ Once execution finishes:
   session could contradict or need to know about), log it:
 
   ```bash
-  python3 ../decision-ledger/scripts/decisions.py add <scope> <aspect> "<value>" --reason "<why, including what lost and to what>"
+  python3 ../context-ledger/scripts/decisions.py add <scope> <aspect> "<value>" --reason "<why, including what lost and to what>"
   ```
 
 - **Always log the episode**, regardless of outcome, so a future "have I tried this
@@ -80,15 +80,15 @@ Once execution finishes:
   ```
 
 The episode's `--detail` is what makes this loop worth more than a decision alone:
-it preserves *what else was considered and why it lost*, which a decision-ledger
+it preserves *what else was considered and why it lost*, which a context-ledger
 entry (current value + reason) doesn't capture on its own.
 
 ## Relationship to the other two stores
 
-- `decision-ledger` — checked at the start of this loop (don't re-decide a settled
+- `context-ledger` — checked at the start of this loop (don't re-decide a settled
   key) and written to at the end (if the pick is a durable choice).
 - `episodic-memory` — written to at the end always, capturing the trajectory
-  (candidates, comparison, outcome), which the decision-ledger's single current
+  (candidates, comparison, outcome), which the context-ledger's single current
   value doesn't hold.
 - `memory` (facts) — untouched by this loop unless the process surfaces a durable,
   non-decision fact worth recording separately.
