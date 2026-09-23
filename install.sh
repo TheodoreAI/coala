@@ -60,7 +60,7 @@ agent config for you):
    snippet above is just enough for your agent to know the tools exist.
 
 2. If you want the global context ledger synced across machines, run once:
-     python3 skills/context-ledger/scripts/init_global_repo.sh
+     bash skills/context-ledger/scripts/init_global_repo.sh
    and follow the printed steps to add a remote.
 
 See README.md for the design rationale and benchmark/RESULTS.md for evidence
